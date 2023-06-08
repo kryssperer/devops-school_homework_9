@@ -1,0 +1,12 @@
+---
+
+- hosts: builder
+  become: true
+  roles:
+    - builder 
+
+
+- hosts: web
+  become: true
+  roles: 
+    - web
