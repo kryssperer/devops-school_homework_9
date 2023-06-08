@@ -1,2 +1,19 @@
 ---
+      - name: install software on build server
+        package: 
+          name: 
+            - git
+            - maven
+            - default-jdk
+          state: present 
+          cache_valid_time: 3600
+
+      - name: build an artifact
+        shell: |
+          git clone https://github.com/boxfuse/boxfuse-sample-java-war-hello.git
+          cd boxfuse-sample-java-war-hello
+          mvn clean package
+        args:
+          creates: /home/ubuntu/boxfuse-sample-java-war-hello/target/hello-1.0.war
+
 # tasks file for builder

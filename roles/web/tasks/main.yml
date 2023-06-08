@@ -1,2 +1,16 @@
 ---
 # tasks file for web
+- name: install needed packages
+  apt: 
+    name:
+      - wget
+      - default-jdk
+      - tomcat9
+    state: present
+    cache_valid_time: 3600
+
+- name: download an artifact from build server
+  ansible.posix.synchronize:
+    src: "/home/ubuntu/boxfuse-sample-java-war-hello/target/hello-1.0.war"
+    dest: "/usr/share/tomcat9-root/default_root"
+  delegate_to: 18.217.146.67
